@@ -9,7 +9,7 @@ reporte_crear_controller = CrearReporteController()
 # Función de consulta
 def consulta(info, id):
     reporte_info = reporte_crear_controller.crear_reporte(info, id)  # Pasar información del usuario y ID
-
+    return reporte_info
 # Definir una ruta POST para crear un usuario
 @crear_reporte_bp.route('/create', methods=['POST'])
 def set_crear_user():
@@ -57,7 +57,7 @@ def set_crear_user():
     if not data or not id:
         return abort(400, description="Datos no proporcionados")
     try:
-        consulta(data, id)
-        return f"Reporte creado correctamente {data}"
+        datos = consulta(data, id)
+        return f"Reporte creado correctamente {datos["token"]}"
     except FileNotFoundError:
         return abort(404, description="Error al crear")

@@ -1,5 +1,3 @@
-import jwt
-
 # Clave secreta para firmar el token
 SECRET_KEY = "anestrack"
 
@@ -11,7 +9,13 @@ def reestructurar_cadena(diccionario, id):
     "mes": diccionario.get("mes"),
     "year": diccionario.get("year")
     }
-    token = jwt.encode(datos, SECRET_KEY, algorithm="HS256")
+    # Convertimos los datos en una cadena
+    datos_str = f"{datos['dia']:02}{datos['mes']:02}{datos['year']}"
+    # Combinamos con la clave secreta
+    clave_base = SECRET_KEY + datos_str
+
+
+    token = "".join(chr(ord(c) + 3) for c in clave_base)
     print("Token JWT generado:", token)
     transformed_data = {
         "token": token,
