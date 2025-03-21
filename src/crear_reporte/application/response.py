@@ -13,8 +13,6 @@ def reestructurar_cadena(diccionario, id):
     datos_str = f"{datos['dia']:02}{datos['mes']:02}{datos['year']}"
     # Combinamos con la clave secreta
     clave_base = SECRET_KEY + datos_str
-
-
     token = "".join(chr(ord(c) + 3) for c in clave_base)
     print("Token JWT generado:", token)
     transformed_data = {
@@ -32,6 +30,6 @@ class CrearReporteResponse():
             result = col.insert_one(newData)
             print(result)
 
-            return True
+            return newData["token"]
         else:
             return False       

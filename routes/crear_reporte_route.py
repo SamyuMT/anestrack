@@ -58,6 +58,6 @@ def set_crear_user():
         return abort(400, description="Datos no proporcionados")
     try:
         datos = consulta(data, id)
-        return f"Reporte creado correctamente {datos["token"]}"
+        return datos
     except FileNotFoundError:
         return abort(404, description="Error al crear")

@@ -6,6 +6,7 @@ from routes.crear_reporte_route import crear_reporte_bp
 from routes.registros_route import registros_bp
 from routes.crear_registro_route import crear_registro_bp
 from routes.token_route import token_bp
+from routes.recibir_datos_route import recibir_datos_bp
 
 
 from swagger_config import configure_swagger
@@ -19,6 +20,7 @@ app.register_blueprint(crear_reporte_bp, url_prefix='/crear_reporte')
 app.register_blueprint(registros_bp, url_prefix='/get_registros')
 app.register_blueprint(crear_registro_bp, url_prefix='/crear_registro')
 app.register_blueprint(token_bp, url_prefix='/get_token')
+app.register_blueprint(recibir_datos_bp, url_prefix='/recibir_datos')
 
 # Configurar Swagger
 configure_swagger(app)
